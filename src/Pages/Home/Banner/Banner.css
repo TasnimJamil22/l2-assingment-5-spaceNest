@@ -1,0 +1,38 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* You can adjust the width as needed */
+  margin: auto;
+}
+
+.carousel-slide {
+  position: relative;
+}
+
+.carousel-image {
+  width: 100%; /* Ensure the image takes full width of the container */
+  height: auto;
+}
+
+.carousel-headline {
+  position: absolute;
+  top: 50%; /* Position the headline vertically at the center */
+  left: 80%; /* Position the headline horizontally at the center */
+  transform: translate(-50%, -50%); /* Centering using transform */
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Optional: Adds text shadow for readability */
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subheading {
+  margin-top: 10px;
+  font-size: 1.2rem; /* Subheading font size */
+  font-weight: normal;
+  color: #f0f0f0; /* Light gray color for the subheading */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Optional text shadow for the subheading */
+}
+
+.cta-button {
+  margin-top: 20px;
+}

@@ -1,15 +1,16 @@
-import { Carousel } from "antd";
+import { Button, Carousel } from "antd";
 import React from "react";
+import "./Banner.css";
 
-import caro2 from "../../../assets/caro2.avif";
-import caro3 from "../../../assets/caro3.avif";
-
-import caro7 from "../../../assets/caro7.avif";
-import caro6 from "../../../assets/caro6.avif";
+import room12 from "../../../assets/room12.jpg";
+import room26 from "../../../assets/room26.webp";
+import room9 from "../../../assets/room9.avif";
+import room23 from "../../../assets/room23.avif";
+import { Link } from "react-router-dom";
 
 const contentStyle: React.CSSProperties = {
-  height: "560px",
-  width: "1850px",
+  height: "760px",
+  width: "100%",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -25,19 +26,68 @@ const Banner = () => {
     <div>
       <Carousel effect="fade">
         <div>
-          <img src={caro2} style={contentStyle} alt="" />
+          <img
+            // style={{ width: "800px", height: "300px", ...contentStyle }}
+            src={room9}
+            style={contentStyle}
+            alt=""
+          />
+          <div className="carousel-headline">
+            <h2>Book Your Ideal Meeting Room with Ease</h2>
+            <p className="subheading">
+              Efficient, hassle-free room booking for all your meeting needs.
+            </p>
+            <Button className="cta-button">
+              <Link to="/meetingrooms" className="btn btn-ghost text-xl">
+                Book Now
+              </Link>
+            </Button>
+          </div>
           {/* <h3 style={contentStyle}> </h3> */}
         </div>
         <div>
-          <img src={caro3} style={contentStyle} alt="" />
+          <img src={room12} style={contentStyle} alt="" />
+          <div className="carousel-headline">
+            <h2>Book Your Ideal Meeting Room with Ease</h2>
+            <p className="subheading">
+              Efficient, hassle-free room booking for all your meeting needs.
+            </p>
+            <Button className="cta-button">
+              <Link to="/meetingrooms" className="btn btn-ghost text-xl">
+                Book Now
+              </Link>
+            </Button>
+          </div>
           {/* <h3 style={contentStyle}> </h3> */}
         </div>
         <div>
-          <img src={caro7} style={contentStyle} alt="" />
+          <img src={room23} style={contentStyle} alt="" />
+          <div className="carousel-headline">
+            <h2>Book Your Ideal Meeting Room with Ease</h2>
+            <p className="subheading">
+              Efficient, hassle-free room booking for all your meeting needs.
+            </p>
+            <Button className="cta-button">
+              <Link to="/meetingrooms" className="btn btn-ghost text-xl">
+                Book Now
+              </Link>
+            </Button>
+          </div>
           {/* <h3 style={contentStyle}> </h3> */}
         </div>
         <div>
-          <img src={caro6} style={contentStyle} alt="" />
+          <img src={room26} style={contentStyle} alt="" />
+          <div className="carousel-headline">
+            <h2>Book Your Ideal Meeting Room with Ease</h2>
+            <p className="subheading">
+              Efficient, hassle-free room booking for all your meeting needs.
+            </p>
+            <Button className="cta-button">
+              <Link to="/meetingrooms" className="btn btn-ghost text-xl">
+                Book Now
+              </Link>
+            </Button>
+          </div>
           {/* <h3 style={contentStyle}> </h3> */}
         </div>
       </Carousel>
