@@ -1,6 +1,9 @@
 import Main from "@/Layout/Main";
 import AboutUs from "@/Pages/AboutUs/AboutUs";
+import RoomManagement from "@/Pages/Admin/RoomManagement/RoomManagement";
 import Booking from "@/Pages/Booking/Booking";
+import CheckOut from "@/Pages/CheckOut/CheckOut";
+// import Confirm from "@/Pages/CheckOut/Confirm";
 import ContactUs from "@/Pages/ContactUs/ContactUs";
 import Home from "@/Pages/Home/Home";
 import Login from "@/Pages/Login/Login";
@@ -47,6 +50,18 @@ const router = createBrowserRouter([
       {
         path: "/booking",
         element: <Booking></Booking>,
+      },
+      {
+        path: "/checkout",
+        element: <CheckOut></CheckOut>,
+      },
+      // {
+      //   path: "/confirm",
+      //   element: <Confirm></Confirm>,
+      // },
+      {
+        path: "/manageRoom",
+        element: <RoomManagement></RoomManagement>,
       },
     ],
   },

@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
+import bookingReducer from "../features/booking/bookingSlice";
+import roomReducer from "../features/rooms/roomSlice";
 
 import { baseApi } from "../api/baseApi";
 import {
@@ -26,15 +28,15 @@ export const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
 
     auth: persistedAuthReducer,
+    booking: bookingReducer,
+    room: roomReducer,
   },
   middleware: (getDefaultMiddleWares) =>
-    getDefaultMiddleWares(
-      {
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        },
-      }
-    ).concat(baseApi.middleware),
+    getDefaultMiddleWares({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(baseApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

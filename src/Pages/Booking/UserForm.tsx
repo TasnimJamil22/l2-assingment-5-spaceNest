@@ -30,7 +30,7 @@ const UserForm = () => {
       {/* here, email is from state and others info are from api */}
       {/* Display the logged-in user's email */}
       <h1 className="text-green-800">Hello,{user?.email} ....</h1>
-      <div className="mx-5">
+      <div className="xl:mx-32 ">
         {/* checking if the current user is available */}
         {currentUser ? (
           <Form
@@ -94,7 +94,7 @@ const UserForm = () => {
 
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Add to Cart
+                Checkout
               </Button>
             </Form.Item>
           </Form>

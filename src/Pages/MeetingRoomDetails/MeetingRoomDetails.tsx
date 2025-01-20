@@ -6,18 +6,39 @@ import roomImg3 from "../../assets/room4.avif";
 import roomImg4 from "../../assets/room13.avif";
 
 import { useGetRoomByIdQuery } from "@/redux/features/rooms/roomApi";
-import { getRoomById } from "@/redux/features/rooms/roomSlice";
+import { getRoomById, setRoom } from "@/redux/features/rooms/roomSlice";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 
 const MeetingRoomDetails = () => {
   const { id } = useParams();
   const { data: room, isError } = useGetRoomByIdQuery(id);
-
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   console.log(isError);
   console.log(id);
   console.log(room?.data?.name);
   getRoomById(id);
+  // Select the room data from Redux store
+  const storedRoom = useAppSelector((state) => state.room.room);
+
+  // Log the room data from Redux to verify it's set
+  useEffect(() => {
+    console.log("Stored room data in Redux:", storedRoom);
+  }, [storedRoom]);
+
+  // Dispatch room data to Redux when it's fetched
+  useEffect(() => {
+    if (room) {
+      dispatch(setRoom(room.data));
+    }
+  }, [room, dispatch]);
+
+  const handleBookNow = () => {
+    navigate("/booking");
+  };
 
   return (
     <div>
@@ -51,7 +72,7 @@ const MeetingRoomDetails = () => {
           <h4 className="text-1xl font-bold">
             Amenities:{room?.data?.amenities?.join(", ")}
           </h4>
-          <Button className="bg-amber-300">
+          <Button onClick={handleBookNow} className="bg-amber-300">
             <Link to="/booking">Book Now</Link>
           </Button>
         </Card>

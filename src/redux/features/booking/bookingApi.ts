@@ -4,7 +4,7 @@ const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAvailableSlots: builder.query({
       query: () => ({
-        url: "/slots/availability",
+        url: `/slots/availability`,
         method: "GET",
       }),
     }),

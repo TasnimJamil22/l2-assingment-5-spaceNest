@@ -22,6 +22,9 @@ const Header = () => {
       <Link to="/signup">
         <li className="font-bold mx-2 ">Sign Up</li>
       </Link>
+      <Link to="/manageRoom">
+        <li className="font-bold mx-2 ">Manage Room</li>
+      </Link>
     </>
   );
 
