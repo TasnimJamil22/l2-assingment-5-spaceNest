@@ -1,6 +1,11 @@
+// import { logout } from "@/redux/features/auth/authSlice";
+// import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
+// import { Button } from "antd";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  // const user = useAppSelector((state) => state.auth.user);
+  // const dispatch = useAppDispatch();
   const menuItems = (
     <>
       <Link to="/">
@@ -15,15 +20,26 @@ const Header = () => {
       <Link to="/contactus">
         <li className="font-bold mx-2 ">Contact Us</li>
       </Link>
+      {/* {user?.email ? (
+        <Button onClick={() => dispatch(logout())}>
+          <li className="font-bold mx-2 ">Log Out</li>
+        </Button>
+      ) : (
+        <Link to="/login">
+          <li className="font-bold mx-2 ">Login</li>
+        </Link>
+      )} */}
       <Link to="/login">
         <li className="font-bold mx-2 ">Login</li>
       </Link>
-
       <Link to="/signup">
         <li className="font-bold mx-2 ">Sign Up</li>
       </Link>
       <Link to="/manageRoom">
         <li className="font-bold mx-2 ">Manage Room</li>
+      </Link>
+      <Link to="/myBookings">
+        <li className="font-bold mx-2 ">My Bookings</li>
       </Link>
     </>
   );

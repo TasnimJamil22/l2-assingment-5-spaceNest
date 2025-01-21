@@ -1,7 +1,9 @@
 import Main from "@/Layout/Main";
 import AboutUs from "@/Pages/AboutUs/AboutUs";
 import RoomManagement from "@/Pages/Admin/RoomManagement/RoomManagement";
+import SlotsManagement from "@/Pages/Admin/RoomManagement/SlotsManagement/SlotsManagement";
 import Booking from "@/Pages/Booking/Booking";
+import MyBookings from "@/Pages/Booking/MyBookings/MyBookings";
 import CheckOut from "@/Pages/CheckOut/CheckOut";
 // import Confirm from "@/Pages/CheckOut/Confirm";
 import ContactUs from "@/Pages/ContactUs/ContactUs";
@@ -62,6 +64,14 @@ const router = createBrowserRouter([
       {
         path: "/manageRoom",
         element: <RoomManagement></RoomManagement>,
+      },
+      {
+        path: "/manageSlot",
+        element: <SlotsManagement></SlotsManagement>,
+      },
+      {
+        path: "/myBookings",
+        element: <MyBookings></MyBookings>,
       },
     ],
   },

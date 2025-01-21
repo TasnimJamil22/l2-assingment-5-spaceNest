@@ -17,7 +17,7 @@ interface TSlotProps {
 }
 
 const Slot = ({ slot }: TSlotProps) => {
-  const { startTime, date, endTime, room } = slot;
+  const { _id, startTime, date, endTime, room } = slot;
   console.log(startTime);
   console.log(date);
   // State to manage if the button is selected or not
@@ -29,7 +29,7 @@ const Slot = ({ slot }: TSlotProps) => {
     setIsSelected(!isSelected); // Toggle between true and false
 
     dispatch(addToCart({ date, room, startTime, endTime }));
-    console.log({ date, room, startTime, endTime });
+    console.log({ _id, date, room, startTime, endTime });
   };
   return (
     <div>

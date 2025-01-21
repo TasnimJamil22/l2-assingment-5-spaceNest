@@ -1,4 +1,7 @@
 import { useGetUsersQuery } from "@/redux/features/auth/authApi";
+import { useGetAvailableSlotsQuery } from "@/redux/features/booking/bookingApi";
+import { useCreateBookingMutation } from "@/redux/features/booking/bookingApi";
+
 import { useAppSelector } from "@/redux/features/hooks";
 import { useGetRoomByIdQuery } from "@/redux/features/rooms/roomApi";
 
@@ -11,7 +14,8 @@ const CheckOut = () => {
   const [roomName, setRoomName] = useState<string>("");
   const [roomCost, setRoomCost] = useState<string>("");
   const [thanks, setThanks] = useState<boolean>(false);
-
+  const [createMyBooking, setCreateMyBooking] = useState<string | null>(null); // Initialize as null
+  console.log("this is createMyBooking", createMyBooking);
   const { bookingDetails } = useAppSelector((state) => state.booking);
   console.log(bookingDetails);
 
@@ -20,11 +24,35 @@ const CheckOut = () => {
   console.log(roomData);
 
   //user info show
-  const user = useAppSelector((state) => state.auth.user);
+  const { user } = useAppSelector((state) => state.auth);
 
   console.log("user", user);
 
   const { data } = useGetUsersQuery("");
+  const [createBooking, { error }] = useCreateBookingMutation();
+  console.log(error);
+  const { data: slots } = useGetAvailableSlotsQuery("");
+
+  console.log(slots);
+
+  type TSlot = {
+    _id: string;
+    room: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+    isBooked: boolean;
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const slots: TSlot[] = data?.data ?? [];
+
+  const filteredSlots = slots?.data?.filter(
+    (slot: TSlot) =>
+      slot.startTime === bookingDetails.startTime &&
+      slot.endTime === bookingDetails.endTime &&
+      slot.date === bookingDetails.date
+  );
+  console.log("filtered we:", filteredSlots);
 
   type TUser = {
     _id: string;
@@ -69,8 +97,26 @@ const CheckOut = () => {
 
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
+  const showModal = async () => {
     setThanks(true);
+    //extracting slot ids from filtered slots
+    const slotIds = filteredSlots.map((slot: TSlot) => slot._id);
+    //booking creation and sending the bookingData object as parameter in the body of the api
+    const bookingData = {
+      date: bookingDetails?.date,
+      slots: slotIds, //using slots _id to post in the api
+      room: bookingDetails?.room,
+      user: currentUser?._id,
+    };
+    // Create booking and wait for the result
+    try {
+      const result = await createBooking(bookingData).unwrap(); // unwrap to handle result or error
+      console.log("Booking created successfully:", result);
+      setCreateMyBooking(result._id); // Store the booking ID or relevant info
+    } catch (err) {
+      console.error("Booking creation failed:", err);
+    }
+    // setCreateMyBooking(createBooking(bookingData));
   };
 
   const handleOk = () => {
@@ -126,7 +172,7 @@ const CheckOut = () => {
           </Button>
 
           {/* Modal */}
-          <Modal
+          {/* <Modal
             title="Thank You"
             open={thanks}
             onOk={handleOk}
@@ -137,14 +183,14 @@ const CheckOut = () => {
               </Button>,
             ]}>
             <p>Thank you for your booking!</p>
-          </Modal>
+          </Modal> */}
         </Card>
       </div>
 
       {/* <h1>{thanks}</h1> */}
       <div>
         <Modal
-          title="Your booking has been confirmed"
+          title="You have booked successfully"
           open={thanks}
           onOk={handleOk}
           onCancel={handleCancel}>

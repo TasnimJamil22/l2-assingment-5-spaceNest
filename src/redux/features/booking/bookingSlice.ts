@@ -9,6 +9,7 @@ type bookingDetails = {
   room?: string;
   startTime?: string;
   endTime?: string;
+  isBooked?: boolean;
 };
 
 type TBookingState = {

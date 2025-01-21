@@ -14,7 +14,25 @@ const roomApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    addRoom: builder.mutation({
+      query: (roomInfo) => ({
+        url: "/rooms",
+        method: "POST",
+        body: roomInfo,
+      }),
+    }),
+    deleteRoom: builder.mutation({
+      query: (id) => ({
+        url: `rooms/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
-export const { useGetRoomQuery, useGetRoomByIdQuery } = roomApi;
+export const {
+  useGetRoomQuery,
+  useGetRoomByIdQuery,
+  useAddRoomMutation,
+  useDeleteRoomMutation,
+} = roomApi;
