@@ -38,6 +38,9 @@ const Header = () => {
       <Link to="/manageRoom">
         <li className="font-bold mx-2 ">Manage Room</li>
       </Link>
+      <Link to="/manageSlot">
+        <li className="font-bold mx-2 ">Manage Slot</li>
+      </Link>
       <Link to="/myBookings">
         <li className="font-bold mx-2 ">My Bookings</li>
       </Link>
