@@ -20,7 +20,15 @@ const CreateSlotsForm = () => {
   const rooms: TRoom[] = data?.data ?? [];
 
   console.log(error);
-  const { register, handleSubmit } = useForm<FormData>({});
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: {
+      date: new Date().toISOString().split("T")[0], // Default to today's date
+    },
+  });
 
   interface FormData {
     room: string;
@@ -45,9 +53,10 @@ const CreateSlotsForm = () => {
       console.error("slot not createrd", error); // Handle login errors (show a message)
     }
   };
-
+  
   return (
     <div>
+      <h1 className="text-2xl font-semibold mb-6 text-center">Add New Slot</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-sm mx-auto p-4 bg-white rounded-lg shadow-md space-y-4">
@@ -71,21 +80,6 @@ const CreateSlotsForm = () => {
           </select>
         </div>
 
-        {/* <div>
-          <label
-            htmlFor="roomName"
-            className="block text-lg font-semibold text-gray-700">
-            Room Name
-          </label>
-          <input
-            type="text"
-            id="roomName"
-            {...register("room")}
-            className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter Room Name"
-          />
-        </div> */}
-
         <div>
           <label
             htmlFor="date"
@@ -95,11 +89,17 @@ const CreateSlotsForm = () => {
           <input
             type="date"
             id="date"
-            {...register("date")}
+            {...register("date", {
+              required: "Date is required",
+               
+            })}
             className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
             placeholder="Select a Date"
           />
         </div>
+        {errors.date && (
+          <span className="text-red-500 text-sm">{errors.date.message}</span>
+        )}
 
         <div>
           <label

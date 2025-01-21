@@ -1,5 +1,4 @@
 import { Card, Col, Row } from "antd";
-import React from "react";
 
 const Service = () => {
   return (
@@ -21,7 +20,6 @@ const Service = () => {
             <Card
               title={
                 <span style={{ fontSize: "28px" }}>
-               
                   Instant Booking Confirmation
                 </span>
               }

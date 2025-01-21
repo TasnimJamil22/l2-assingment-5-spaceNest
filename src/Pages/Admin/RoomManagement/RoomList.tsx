@@ -6,11 +6,11 @@ import {
   useDeleteRoomMutation,
   useGetRoomQuery,
   //   useDeleteRoomMutation,
-} from "@/redux/features/rooms/roomApi"; // Update this to match your actual API hooks
+} from "@/redux/features/rooms/roomApi";  
 
 const RoomList = () => {
   const { data, error, isLoading } = useGetRoomQuery(undefined);
-  const [deleteRoom] = useDeleteRoomMutation(); // Assuming delete room mutation is available
+  const [deleteRoom] = useDeleteRoomMutation();  
   const [open, setOpen] = useState(false);
   const [roomToDelete, setRoomToDelete] = useState<TRoom | null>(null);
   console.log(open);
@@ -21,7 +21,7 @@ const RoomList = () => {
     }
   }, [error]);
 
-  //   // Show delete confirmation modal
+  //   // Showing delete confirmation modal
   const showDeleteConfirm = (room: TRoom) => {
     setRoomToDelete(room);
     setOpen(true);
@@ -31,7 +31,7 @@ const RoomList = () => {
   const handleDelete = async () => {
     if (roomToDelete) {
       try {
-        // Call the delete mutation with the room ID
+        // Calling the delete mutation with the room ID
         await deleteRoom(roomToDelete._id); // Assuming `key` is the room ID
         message.success("Room deleted successfully");
       } catch (err) {
@@ -39,7 +39,7 @@ const RoomList = () => {
         console.error("Delete failed:", err);
       }
     }
-    setOpen(false); // Close the modal after delete action
+    setOpen(false); // Closing the modal after delete action
   };
 
   interface TRoom {

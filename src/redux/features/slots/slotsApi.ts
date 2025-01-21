@@ -9,7 +9,20 @@ const slotApi = baseApi.injectEndpoints({
         body: slotInfo,
       }),
     }),
+    deleteSlot: builder.mutation({
+      query: (id) => ({
+        url: `/slots/${id}`,
+        method: "DELETE",
+      }),
+    }),
+    updateSlot: builder.mutation({
+      query: (updatedSlot) => ({
+        url: `/slots/${updatedSlot._id}`,
+        method: "PUT",
+        body: updatedSlot,
+      }),
+    }),
   }),
 });
 
-export const { useCreateSlotMutation } = slotApi;
+export const { useCreateSlotMutation, useDeleteSlotMutation,useUpdateSlotMutation } = slotApi;

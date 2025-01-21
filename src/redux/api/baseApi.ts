@@ -4,7 +4,8 @@ import type { RootState } from "../features/store";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://space-nest-server.vercel.app/api",
+    // baseUrl: "http://localhost:5000/api",
     prepareHeaders: (headers, { getState }) => {
       // Retrieve token from Redux store or localStorage
       const token =
